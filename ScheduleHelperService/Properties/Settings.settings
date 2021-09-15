@@ -1,0 +1,25 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ScheduleHelperService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="cronJobs" Type="System.String" Scope="Application">
+      <Value Profile="(Default)"># odd
+* 0-59/3 * * * ?  *
+
+# Even
+* 2-59/3 * * * ? *</Value>
+    </Setting>
+    <Setting Name="secInterval" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="exePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">notepad</Value>
+    </Setting>
+    <Setting Name="exeArgs" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="exeWorkDir" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
