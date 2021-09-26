@@ -61,8 +61,20 @@ Year (Optional) empty, 1970-2199     , - * /
 ---------------------------------------------------");
         }
 
+        public DateTime ConvertUtcDateTime(DateTime utcDateTime, string timeZoneId)
+        {
+            var tz = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+            var convertedDateTime = TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, tz);
+
+            return convertedDateTime;
+        }
+
         static void Main(string[] args)
         {
+            ConfigUtils.TryLoad("config.yaml");
+            return;
+
+
             if (String.IsNullOrEmpty(settings.exePath))
             {
                 l("Empty exe path! Exisiting...");
@@ -108,6 +120,7 @@ Year (Optional) empty, 1970-2199     , - * /
                         bool timeMatchedCron = false;
 
                         DateTime now = DateTime.Now;
+                        
                         timesToCheck.ForEach((cron) =>
                         {
                             if (cron.IsSatisfiedBy(now))

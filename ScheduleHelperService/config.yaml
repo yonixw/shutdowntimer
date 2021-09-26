@@ -1,0 +1,19 @@
+﻿version: 1
+programs:
+- &prog1
+  args: '-SpaceAfter '
+  path: C:\path\to\program\1.exe
+- args: ' -SpaceBefore'
+  path: C:\path\to\program\2.exe
+- &progcustom2
+  args:
+  path: C:\path\to\program\3.exe
+schedule:
+  weekday:
+    pattern: '* * * * 45'
+    targets:
+    - *prog1
+    - 
+      <<: *progcustom2
+      args: " I have both spaces "
+    timezone: Jerusalem Daylight Time
