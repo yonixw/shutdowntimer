@@ -12,23 +12,30 @@ using YamlDotNet.Serialization;
 
 namespace ScheduleHelperService
 {
-    public class ConfigUtils
+    public static class ConfigUtils
     {
-        public static void TryLoad(string path)
-        {
-            IDeserializer d = new DeserializerBuilder()
-                .IgnoreUnmatchedProperties()
+        static IDeserializer d = new DeserializerBuilder() // TODO how to validate empty proprs?
                 .Build();
 
-            ISerializer s = new SerializerBuilder()
-                .WithMaximumRecursion(50)
-                .Build(); 
+        static ISerializer s = new SerializerBuilder()
+            .WithMaximumRecursion(50)
+            .Build();
+
+        public static bool TryLoad(string path)
+        {
+            bool parsed = false;
 
             string yamlText = File.ReadAllText(path);
-            config_v1 config_loaded = null;
+
+            // Step 1 - Check if a version is present:
+
+
+
+
+            config config_loaded = null;
             using (TextReader sr = new StringReader(yamlText))
             {
-                config_loaded = d.Deserialize<config_v1>(new MergingParser(new Parser(sr)));
+                config_loaded = d.Deserialize<config>(new MergingParser(new Parser(sr)));
             }
             
 
@@ -41,7 +48,7 @@ namespace ScheduleHelperService
             //var Obj = s.Deserialize(yamlText);
             //Console.WriteLine(s.Serialize(Obj));
 
-            var config_v1 = new config_v1();
+            var config_v1 = new config();
             config_v1.version = "1";
             
             program p1 = new program();
@@ -68,31 +75,51 @@ namespace ScheduleHelperService
         }
     }
 
+    public class ConfigLoadResult
+    {
+        public bool failed = true;
+        public string error = "Initial error";
+        public config result = null;
+
+        public ConfigLoadResult fail(string reason)
+        {
+            return new ConfigLoadResult()
+            {
+                error = reason
+            };
+        }
+
+        public ConfigLoadResult ok(config result)
+        {
+            return new ConfigLoadResult()
+            {
+                failed = false,
+                result = result
+            };
+        }
+    }
+
     public class program
     {
         public string args { get; set; } = "";
-        public string path { get; set; }
-        public string workdir { get; set; }
+        public string path { get; set; } = "";
+        public string workdir { get; set; } = "";
     }
 
     public class scheduleItem
     {
-        public string pattern { get; set; } // Will be validated anyway
-        public List<program> targets { get; set; }
+        public string pattern { get; set; } = "";
+        public List<program> targets { get; set; } = new List<program>();
         public string timezone { get; set; } = "UTC";
     }
 
-    public class config_v1
+    public class config
     {
-        public string version { get; set; }
-        public List<program> programs { get; set; }
-        public Dictionary<string, scheduleItem> schedule { get; set; }
+        public string version { get; set; } = "-1";
+        public List<program> programs { get; set; } = new List<program>();
+        public Dictionary<string, scheduleItem> schedule { get; set; } = new Dictionary<string, scheduleItem>();
         public int secinterval { get; set; } = 30;
 
     }
 
-    public class versionOnly
-    {
-        public string version { get; set; }
-    }
 }
