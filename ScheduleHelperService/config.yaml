@@ -8,6 +8,7 @@ programs:
 - &progcustom2
   args:
   path: C:\path\to\program\3.exe
+  workdir: C:\check\im\here
 schedule:
   weekday:
     pattern: '* * * * 45'

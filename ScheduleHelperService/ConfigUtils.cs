@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 
+// Thanks to https://archive.is/5TLci for MergingParser
+
 namespace ScheduleHelperService
 {
     public class ConfigUtils
@@ -70,7 +72,7 @@ namespace ScheduleHelperService
     {
         public string args { get; set; }
         public string path { get; set; }
-        public string wokrdir { get; set; }
+        public string workdir { get; set; }
     }
 
     public class scheduleItem
