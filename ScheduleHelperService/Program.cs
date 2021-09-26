@@ -7,6 +7,26 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 
+
+/*
+ * TODO
+ * program conf file + id that a cron format can call upon (with custom PARAM=PARAM???)
+ * 
+ * Get time from UTC?? also verify from some server?
+ * 
+ * Expression
+ *  Cront Text
+ *  ExecId
+ *  Custom Additional Args
+ *  
+ * Execs:
+ *   Id 
+ *   Args
+ *   WorkPath
+ *   
+ *  YAML that will be in same Direcotry, or from first ARGS of this program (args[0])
+*/
+
 namespace ScheduleHelperService
 {
     class Program
