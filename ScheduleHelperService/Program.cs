@@ -10,19 +10,9 @@ using System.Threading;
 
 /*
  * TODO
- * program conf file + id that a cron format can call upon (with custom PARAM=PARAM???)
  * 
  * Get time from UTC?? also verify from some server?
- * 
- * Expression
- *  Cront Text
- *  ExecId
- *  Custom Additional Args
- *  
- * Execs:
- *   Id 
- *   Args
- *   WorkPath
+ *      Time server? 
  *   
  *  YAML that will be in same Direcotry, or from first ARGS of this program (args[0])
 */
@@ -75,6 +65,7 @@ Year (Optional) empty, 1970-2199     , - * /
             return;
 
 
+            /*
             if (String.IsNullOrEmpty(settings.exePath))
             {
                 l("Empty exe path! Exisiting...");
@@ -149,6 +140,7 @@ Year (Optional) empty, 1970-2199     , - * /
                 }
 
             }
+            */
 
             l("[DONE]");
         }

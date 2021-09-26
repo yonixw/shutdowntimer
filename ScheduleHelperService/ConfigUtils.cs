@@ -70,16 +70,16 @@ namespace ScheduleHelperService
 
     public class program
     {
-        public string args { get; set; }
+        public string args { get; set; } = "";
         public string path { get; set; }
         public string workdir { get; set; }
     }
 
     public class scheduleItem
     {
-        public string pattern { get; set; }
+        public string pattern { get; set; } // Will be validated anyway
         public List<program> targets { get; set; }
-        public string timezone { get; set; }
+        public string timezone { get; set; } = "UTC";
     }
 
     public class config_v1
@@ -87,6 +87,7 @@ namespace ScheduleHelperService
         public string version { get; set; }
         public List<program> programs { get; set; }
         public Dictionary<string, scheduleItem> schedule { get; set; }
+        public int secinterval { get; set; } = 30;
 
     }
 
