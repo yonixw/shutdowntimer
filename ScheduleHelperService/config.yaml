@@ -1,15 +1,11 @@
 ﻿version: 1
-#secinterval: 5
+secinterval: 5
 programs:
 - &prog1
-  args: '-SpaceAfter '
-  path: C:\path\to\program\1.exe
-- args: ' -SpaceBefore'
-  path: C:\path\to\program\2.exe
-- &progcustom2
+  path: "C:\\" # Open with default, so open folder with Explorer
+- &cmd
   args:
-  path: C:\path\to\program\3.exe
-  workdir: C:\check\im\here
+  path: cmd
 schedule:
   oddminute:
     # By addition of 2 we get 1,3,5,...59
@@ -17,10 +13,16 @@ schedule:
   evenminute:
     pattern: '* 0-59/2 * * * ? *'
   weekday:
-    pattern: '* * * * 45'
+    pattern: '* * 4 * * ? *'
     targets:
-    - *prog1
     - 
-      <<: *progcustom2
-      args: " I have both spaces "
-    timezone: Jerusalem Daylight Time
+      <<: *prog1
+      workdir: "C:\\Windows\\"
+    timezone: Israel Standard Time
+  weekdayUTC:
+    # IST = GMT +2/3 based on day save light
+    pattern: '* * 2 * * ? *'
+    targets:
+    - 
+      <<: *cmd
+      workdir: "C:\\"

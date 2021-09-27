@@ -17,6 +17,13 @@ Choose a full qualified name based on operation system:
 * Mac OS: https://archive.is/5Ak2e
 * Windows: https://archive.is/6CZ2V
 
+For UTC use GMT
+Neither UTC nor GMT ever change for Daylight Saving Time (DST).
+However, some of the countries that use GMT switch to different time zones during their DST period.
+For example, 
+the United Kingdom is not on GMT all year, it uses British Summer Time (BST),
+which is one hour ahead of GMT, during the summer months.
+
 
 Cron expression help (from: https://archive.ph/J37Js):
 ===================================
