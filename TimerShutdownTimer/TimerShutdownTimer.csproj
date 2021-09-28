@@ -38,7 +38,7 @@
       <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="ProcessTerminationProtection">
-      <HintPath>..\..\..\..\..\..\ProxyServices\Divert_HTTP\ProcessTerminationProtection.dll</HintPath>
+      <HintPath>.\ProcessTerminationProtection.dll</HintPath>
     </Reference>
     <Reference Include="Quartz, Version=3.3.3.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
       <HintPath>packages\Quartz.3.3.3\lib\net461\Quartz.dll</HintPath>
