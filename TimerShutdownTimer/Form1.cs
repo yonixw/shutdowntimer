@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -37,8 +38,11 @@ namespace TimerShutdownTimer
             TopMost = !TopMost;
         }
 
-        public int CurrentLeftSec = 60 * 60;
 
+        
+
+        public int CurrentLeftSec = 60 * 60;
+        public string random_code = randomCode();
         private void Form1_Load(object sender, EventArgs e)
         {
             ProcessTerminationProtection.ProcessProtect.ProtectCurrentProcess();
@@ -48,6 +52,7 @@ namespace TimerShutdownTimer
             tbTime.Value = tbTime.Maximum;
 
             btnAddTime.Text += Settings.Default.AddOneTimeMIN;
+            txtCode.Text =  string.Join(" - ", random_code.ToCharArray());
 
             tmrSub.Interval = 1 * 1000;
             tmrSub.Enabled = true;
@@ -74,6 +79,12 @@ namespace TimerShutdownTimer
             if (isTimerEnabled)
             {
                 CurrentLeftSec = Math.Max(0, CurrentLeftSec - (tmrSub.Interval / 1000));
+                if (CurrentLeftSec % 20 == 0 )
+                {
+                    // Recalculate code
+                    random_code = randomCode();
+                    txtCode.Text = string.Join(" - ", random_code.ToCharArray());
+                }
                 if (CurrentLeftSec <= 2)
                 {
                     isTimerEnabled = false;
@@ -88,6 +99,14 @@ namespace TimerShutdownTimer
             }
         }
 
+        public static string ComputeSHA256Hash(string text)
+        {
+            using (var sha256 = new SHA256Managed())
+            {
+                return BitConverter.ToString(sha256.ComputeHash(Encoding.UTF8.GetBytes(text))).Replace("-", "");
+            }
+        }
+
         DateTime lastTry = new DateTime();
         bool isPasswordOK(string realpass)
         {
@@ -96,6 +115,10 @@ namespace TimerShutdownTimer
             {
                 lastTry = new DateTime();
                 if (realpass.Equals(txtPassword.Text))
+                {
+                    return true;
+                }
+                else if (ComputeSHA256Hash(random_code + realpass).ToLower().Equals(txtPassword.Text))
                 {
                     return true;
                 }
@@ -136,6 +159,19 @@ namespace TimerShutdownTimer
         private void button3_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+
+
+        const string code_source = "ABCDEFGHJKLMNPQRSTVWXYZ23456789";
+        static string randomCode(int length = 6)
+        {
+            Random random = new Random();
+            return new string (Enumerable.Repeat(code_source, length).Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(random_code);
         }
     }
 }

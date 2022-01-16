@@ -41,6 +41,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tbTime)).BeginInit();
             this.SuspendLayout();
             // 
@@ -157,15 +160,49 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // txtCode
+            // 
+            this.txtCode.Enabled = false;
+            this.txtCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCode.Location = new System.Drawing.Point(12, 197);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtCode.Size = new System.Drawing.Size(540, 23);
+            this.txtCode.TabIndex = 8;
+            this.txtCode.Text = "<CODE>";
+            this.txtCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 181);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Secret Code:";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(558, 197);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(55, 23);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "Copy";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 185);
+            this.ClientSize = new System.Drawing.Size(625, 229);
             this.ControlBox = false;
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.txtCode);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.tbTime);
             this.Controls.Add(this.lblTimeLeft);
@@ -201,6 +238,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox txtCode;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button4;
     }
 }
 
